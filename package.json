@@ -1,0 +1,16 @@
+{
+  "name": "code-kata-game_of_life",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.tech.visualvest.de:dschopper/code-kata-game_of_life.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT"
+}
