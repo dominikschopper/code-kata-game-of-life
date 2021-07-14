@@ -6,7 +6,7 @@ Da die Funktionalität doch einges erfordert, sollte die Kata mit genügend Zeit
 
 ## Aufgabe
 
-Es ist Eure Aufgabe, Conways Game of Life auszuprogrammieren.
+Es ist Eure Aufgabe, Conways "Game of Life" auszuprogrammieren.
 
 D.h. eine Karte `Board` zu erstellen, das aus einzelnen Zellen besteht. Jede Zelle kann einen von zwei Zuständen einnehmen: `alive` oder `dead`.
 
@@ -21,31 +21,98 @@ Das Spiel wird in Runden berechnet. D.h. aus dem initialen Zustand (Runde 0) wir
 Jede Zelle hat 8 Nachbarzellen! D.h. alle direkt angrenzenden Zellen waagrecht, senkrecht oder diagonal gelten als Nachbarn.
 
 - Jede lebende Zelle mit weniger als 2 lebenden Nachbarn wird in der nächsten Runde tot sein. (Unterbevölkerung)
+
 - Jede lebende Zelle mit mehr als 3 lebenden Nachbarn wird in der nächsten Runde tot sein. (Überbevölkerung)
+
 - Jede lebende Zelle mit 2 oder 3 Nachbarn wird überleben.
+
 - Jede tote Zelle mit genau 3 lebenden Nachbarn wird lebendig. (Reproduktion).
 
 D.h. in aller Kürze:
 
-- Jede lebende Zelle mit 2 oder 3 lebenden Nachbarzellen überlebt eine Runde.
-- Jede tote Zelle mit genau 3 lebenden Nachbarn wird lebendig.
-- Alle anderen Zellen sind in der nächsten Runde tot.
+1. Jede lebende Zelle mit 2 oder 3 lebenden Nachbarzellen überlebt eine Runde.
+
+1. Jede tote Zelle mit genau 3 lebenden Nachbarn wird lebendig.
+
+1. Alle anderen Zellen sind in der nächsten Runde tot.
 
 ### Board
 
-Erstellt ein Board, das ein Property `data` hat, in dem ein Board als Array von Arrays abgebildet ist.
+Erstellt ein Board, das ein Property `data` das den aktuellen State des Boards enthält.
 
-Das Board soll eine Methode `next()` haben, die die nächste Runde errechnet und diese über `data` zugänglich macht.
+Der State ist als einfacher Array von Arrays abgebildet `CellState[][]`
 
-Außerdem soll das Board eine Methode `asString()` haben, die Arrays als ein String zurückgeben.
+Es gibt bereits einen `enum CellState {}`.
 
-### Input
+Das Board soll eine Methode `next()` haben, die die nächste Runde errechnet und diese über `data` und andere Methoden zugänglich macht.
 
-Boards können Daten durch die `setDataAsString(data: string)` erhalten.
+Außerdem muss das Board eine Methode `toString()` haben, die den state als ein String zurückgeben. Jede Zelle ist ein Zeichen (`.` für tote Zellen, '#' für lebende Zellen, zwischen zwei Zeilen steht ein `\n`)
 
-#### Bsp 1
+Das Board soll die Daten, die durch die `toString()` Methode geliefert werden auch mit einer `setDataAsString(strg)` Methode konsumieren können.
 
-Der String Input sieht zB so aus:
+### Beispiele für Muster
+
+-----
+#### Bsp 1 - static
+
+oder dieser Input
+```
+....
+.##.
+.##.
+....
+```
+hätte nach dem Aufruf von `next()` diesen Output
+```
+....
+.##.
+.##.
+....
+```
+
+-----
+#### Bsp 2 - create, static
+
+oder dieser Input
+```
+....
+.##.
+.#..
+....
+```
+hätte nach dem Aufruf von `next()` diesen Output
+```
+....
+.##.
+.##.
+....
+```
+
+-----
+#### Bsp 3 - spinner
+
+oder dieser Input
+```
+.....
+.###.
+.....
+```
+hätte nach dem Aufruf von `next()` diesen Output
+```
+..#..
+..#..
+..#..
+```
+hätte nach dem Aufruf von `next()` diesen Output
+```
+.....
+.###.
+.....
+```
+-----
+#### Bsp 4 - Glider
+
+Der String Input (für einen einfachen sogenannten Glider) sieht zB so aus:
 
 ```
 ........
@@ -66,21 +133,3 @@ und hätte nach dem Aufruf von `next()` diesen Zustand
 ........
 ```
 
-#### Bsp 2
-
-oder dieser Input
-```
-......
-......
-.####.
-......
-......
-```
-hätte nach dem Aufruf von `next()` diesen Output
-```
-......
-..#...
-..#...
-..#...
-......
-```
