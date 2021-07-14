@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest -c jest.config.js",
+    "test:watch": "jest -c jest.config.js --watch",
+    "serve:dev": "parcel serve --port 3456 src/index.html"
   },
   "repository": {
     "type": "git",
@@ -12,5 +14,12 @@
   },
   "keywords": [],
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^26.0.23",
+    "jest": "^27.0.4",
+    "parcel-bundler": "^1.12.5",
+    "ts-jest": "^27.0.3",
+    "typescript": "^4.3.4"
+  }
 }
