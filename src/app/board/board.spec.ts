@@ -84,7 +84,11 @@ describe('the Board interface', () => {
                 '..#...\n' +
                 '......\n' +
                 '......\n' +
+<<<<<<< HEAD
                 '......' // '......\n' // use this if the test fails
+=======
+                '......' // '......\n' // use this, if the test fails
+>>>>>>> 0da31fd... chore(spec) add alternative expect result
             );
             board.next();
             expect(board.toString()).toBe(
@@ -92,7 +96,11 @@ describe('the Board interface', () => {
                 '......\n' +
                 '......\n' +
                 '......\n' +
+<<<<<<< HEAD
                 '......' // '......\n' // use this if the test fails
+=======
+                '......' // '......\n' // use this, if the test fails
+>>>>>>> 0da31fd... chore(spec) add alternative expect result
             );
         });
 
@@ -110,7 +118,11 @@ describe('the Board interface', () => {
                 '..#...\n' +
                 '..#...\n' +
                 '......\n' +
+<<<<<<< HEAD
                 '......' // '......\n' // use this if the test fails
+=======
+                '......' // '......\n' // use this, if the test fails
+>>>>>>> 0da31fd... chore(spec) add alternative expect result
             );
             board.next();
             expect(board.toString()).toBe(
@@ -118,7 +130,11 @@ describe('the Board interface', () => {
                 '......\n' +
                 '......\n' +
                 '......\n' +
+<<<<<<< HEAD
                 '......' // '......\n' // use this if the test fails
+=======
+                '......' // '......\n' // use this, if the test fails
+>>>>>>> 0da31fd... chore(spec) add alternative expect result
             );
         });
 
