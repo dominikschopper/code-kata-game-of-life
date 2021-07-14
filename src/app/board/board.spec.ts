@@ -36,7 +36,6 @@ describe('the Board interface', () => {
             const mixedData = '.#.';
 
             board.setDataAsString(mixedData)
-
             expect(board.data[0][0]).toBe(CellState.DEAD);
             expect(board.data[0][1]).toBe(CellState.LIFE);
             expect(board.data[0][2]).toBe(CellState.DEAD);
@@ -85,7 +84,7 @@ describe('the Board interface', () => {
                 '..#...\n' +
                 '......\n' +
                 '......\n' +
-                '......' // '......\n' // use this if the test fails
+                '......' // '......\n' // use this, if the test fails
             );
             board.next();
             expect(board.toString()).toBe(
@@ -93,7 +92,7 @@ describe('the Board interface', () => {
                 '......\n' +
                 '......\n' +
                 '......\n' +
-                '......' // '......\n' // use this if the test fails
+                '......' // '......\n' // use this, if the test fails
             );
         });
 
@@ -111,7 +110,7 @@ describe('the Board interface', () => {
                 '..#...\n' +
                 '..#...\n' +
                 '......\n' +
-                '......' // '......\n' // use this if the test fails
+                '......' // '......\n' // use this, if the test fails
             );
             board.next();
             expect(board.toString()).toBe(
@@ -119,7 +118,7 @@ describe('the Board interface', () => {
                 '......\n' +
                 '......\n' +
                 '......\n' +
-                '......' // '......\n' // use this if the test fails
+                '......' // '......\n' // use this, if the test fails
             );
         });
 
@@ -135,7 +134,7 @@ describe('the Board interface', () => {
                 '....\n' +
                 '.##.\n' +
                 '.##.\n' +
-                '....'
+                '....' // '....\n' // use this if the test fails
             );
 
             for (let i = 0; i < 5; i += 1) {
@@ -144,7 +143,7 @@ describe('the Board interface', () => {
                     '....\n' +
                     '.##.\n' +
                     '.##.\n' +
-                    '....'
+                    '....' // '....\n' // use this if the test fails
                 );
             }
         });
@@ -163,7 +162,7 @@ describe('the Board interface', () => {
                 '....\n'+
                 '.##.\n'+
                 '..#.\n'+
-                '....'
+                '....' // '....\n' // use this if the test fails
             );
 
             for (let i = 0; i < 5; i += 1) {
