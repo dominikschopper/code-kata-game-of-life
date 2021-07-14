@@ -68,9 +68,6 @@ describe('the Board interface', () => {
     });
 
     describe('the next() method', () => {
-        beforeEach(() => {
-            board = new GameBoard();
-        });
 
         /**
          *   01234      01234
@@ -124,6 +121,32 @@ describe('the Board interface', () => {
             );
         });
 
+        /**
+         *   01234      01234      01234
+         * 0 ....      ....      ....
+         * 1 .##.  =>  .##.  =>  .##.
+         * 2 .##.      .##.      .##.
+         * 3 ....      ....      ....
+         */
+        it('should not change a square of live cells', () => {
+            board.setDataAsString(
+                '....\n' +
+                '.##.\n' +
+                '.##.\n' +
+                '....'
+            );
+
+            for (let i = 0; i < 5; i += 1) {
+                board.next();
+                expect(board.toString()).toBe(
+                    '....\n' +
+                    '.##.\n' +
+                    '.##.\n' +
+                    '....'
+                );
+            }
+        });
+
 
         /**
          *   01234      01234      01234
@@ -135,21 +158,19 @@ describe('the Board interface', () => {
          */
         it('living cells will stay alive in a static pattern', () => {
             board.setDataAsString(
-                '.....\n'+
-                '.##..\n'+
-                '..#..\n'+
-                '.....\n'+
-                '.....'
+                '....\n'+
+                '.##.\n'+
+                '..#.\n'+
+                '....'
             );
 
             for (let i = 0; i < 5; i += 1) {
                 board.next();
                 expect(board.toString()).toBe(
-                    '.....\n' +
-                    '.##..\n' +
-                    '..#..\n' +
-                    '.....\n' +
-                    '.....'
+                    '....\n' +
+                    '.##.\n' +
+                    '.##.\n' +
+                    '....\n'
                 );
             }
         });
