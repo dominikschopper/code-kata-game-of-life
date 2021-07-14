@@ -20,12 +20,12 @@ Das Spiel wird in Runden berechnet. D.h. aus dem initialen Zustand (Runde 0) wir
 
 Jede Zelle hat 8 Nachbarzellen! D.h. alle direkt angrenzenden Zellen waagrecht, senkrecht oder diagonal gelten als Nachbarn.
 
-- Jede lebende Zelle mit weniger als 2 lebenden Nachbarn wird in der nächsten Runde tot sein. (Unterbevölkerung)
-- Jede lebende Zelle mit mehr als 3 lebenden Nachbarn wird in der nächsten Runde tot sein. (Überbevölkerung)
+- Jede lebende Zelle mit weniger als 2 lebenden Nachbarn wird in der nächsten Runde tot sein. (**Unterbevölkerung**)
+- Jede lebende Zelle mit mehr als 3 lebenden Nachbarn wird in der nächsten Runde tot sein. (**Überbevölkerung**)
 - Jede lebende Zelle mit 2 oder 3 Nachbarn wird überleben.
-- Jede tote Zelle mit genau 3 lebenden Nachbarn wird lebendig. (Reproduktion).
+- Jede tote Zelle mit genau 3 lebenden Nachbarn wird lebendig. (**Reproduktion**).
 
-D.h. in aller Kürze:
+D.h. die vier Regeln lassen sich auf folgende drei verkürzen:
 
 - Jede lebende Zelle mit 2 oder 3 lebenden Nachbarzellen überlebt eine Runde.
 - Jede tote Zelle mit genau 3 lebenden Nachbarn wird lebendig.
@@ -37,7 +37,7 @@ Erstellt ein Board, das ein Property `data` hat, in dem ein Board als Array von 
 
 Das Board soll eine Methode `next()` haben, die die nächste Runde errechnet und diese über `data` zugänglich macht.
 
-Außerdem soll das Board eine Methode `asString()` haben, die Arrays als ein String zurückgeben.
+Außerdem soll das Board eine Methode `toString()` haben, die Arrays als ein String zurückgeben.
 
 ### Input
 
