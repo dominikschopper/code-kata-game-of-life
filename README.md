@@ -28,7 +28,7 @@ Jede Zelle hat 8 Nachbarzellen! D.h. alle direkt angrenzenden Zellen waagrecht, 
 
 - Jede tote Zelle mit genau 3 lebenden Nachbarn wird lebendig. (Reproduktion).
 
-D.h. in aller Kürze:
+D.h. die vier Regeln lassen sich auf folgende drei verkürzen:
 
 1. Jede lebende Zelle mit 2 oder 3 lebenden Nachbarzellen überlebt eine Runde.
 
