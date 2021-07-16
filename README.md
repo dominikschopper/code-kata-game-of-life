@@ -133,3 +133,17 @@ und hätte nach dem Aufruf von `next()` diesen Zustand
 ........
 ```
 
+## Versteckter Tipp!
+
+Um geschachtelte Strukturen wie `state: CellState[][]` zu clonen, könnt ihr
+
+a. Lodashs `__.cloneDeep()` verwenden oder
+  ```typescript
+  const state: CellState[][] = [ [ CellState.LIFE, CellState.DEAD ] ];
+  const copy = __cloneDeep(state);
+  ```
+b. mit JS Boardmitteln per `JSON` Aufruf
+  ```typescript
+  const state: CellState[][] = [ [ CellState.LIFE, CellState.DEAD ] ];
+  const copy = JSON.parse(JSON.stringify(state));
+  ```

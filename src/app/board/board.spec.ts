@@ -1,10 +1,12 @@
-import { Board, CellState, GameBoard } from './board';
+import { Board, CellState } from './board';
+import { GameBoard, GameRules } from './game-board';
 
 describe('the Board interface', () => {
     let board: Board;
+    const rules = new GameRules();
 
     beforeEach(() => {
-        board = new GameBoard();
+        board = new GameBoard(rules);
     });
 
     describe('the setDataAsString() method', () => {
@@ -83,7 +85,7 @@ describe('the Board interface', () => {
                 '..#...\n' +
                 '......\n' +
                 '......\n' +
-                '......'
+                '......' // '......\n' // use this if the test fails
             );
             board.next();
             expect(board.toString()).toBe(
@@ -91,7 +93,7 @@ describe('the Board interface', () => {
                 '......\n' +
                 '......\n' +
                 '......\n' +
-                '......'
+                '......' // '......\n' // use this if the test fails
             );
         });
 
@@ -109,7 +111,7 @@ describe('the Board interface', () => {
                 '..#...\n' +
                 '..#...\n' +
                 '......\n' +
-                '......'
+                '......' // '......\n' // use this if the test fails
             );
             board.next();
             expect(board.toString()).toBe(
@@ -117,7 +119,7 @@ describe('the Board interface', () => {
                 '......\n' +
                 '......\n' +
                 '......\n' +
-                '......'
+                '......' // '......\n' // use this if the test fails
             );
         });
 
@@ -170,7 +172,7 @@ describe('the Board interface', () => {
                     '....\n' +
                     '.##.\n' +
                     '.##.\n' +
-                    '....\n'
+                    '....' // '....\n' // use this if test fails
                 );
             }
         });
@@ -191,34 +193,37 @@ describe('the Board interface', () => {
                 '.....\n' +
                 '.###.\n' +
                 '.....\n' +
-                '.....'
-            )
+                '.....' // '.....\n' // use this if test fails
+            );
 
             board.next();
+
             expect(board.toString()).toBe(
                 '.....\n' +
                 '..#..\n' +
                 '..#..\n' +
                 '..#..\n' +
-                '.....'
+                '.....' // '.....\n' // use this if test fails
             );
 
             board.next();
+
             expect(board.toString()).toBe(
-                '.....' +
-                '.....' +
-                '.###.' +
-                '.....' +
-                '.....'
+                '.....\n' +
+                '.....\n' +
+                '.###.\n' +
+                '.....\n' +
+                '.....' // '.....\n' // use this if test fails
             );
 
             board.next();
+
             expect(board.toString()).toBe(
                 '.....\n' +
                 '..#..\n' +
                 '..#..\n' +
                 '..#..\n' +
-                '.....'
+                '.....' // '.....\n' // use this if test fails
             );
 
         });
