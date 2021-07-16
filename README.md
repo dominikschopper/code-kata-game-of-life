@@ -50,6 +50,24 @@ Außerdem muss das Board eine Methode `toString()` haben, die den state als ein 
 
 Das Board soll die Daten, die durch die `toString()` Methode geliefert werden auch mit einer `setDataAsString(strg)` Methode konsumieren können.
 
+#### Tipp!
+
+Um geschachtelte Strukturen wie `state: CellState[][]` zu clonen, könnt ihr
+
+a. Lodashs `__.cloneDeep()` verwenden (erst lodash als dependency installieren)
+  ```typescript
+  const state: CellState[][] = [ [ CellState.LIFE, CellState.DEAD ] ];
+  const copy = __cloneDeep(state);
+  ```
+   oder
+b. mit JS STandard-Boardmitteln per `JSON` Aufruf ein Object deep-clonen
+  ```typescript
+  const state: CellState[][] = [ [ CellState.LIFE, CellState.DEAD ] ];
+  const copy = JSON.parse(JSON.stringify(state));
+  ```
+
+das kann hier hilfreich sein, um zB eine Copy des Boards zu erstellen, um keine Seiteneffekte zu erzeugen
+
 ### Beispiele für Muster
 
 -----
@@ -132,18 +150,3 @@ und hätte nach dem Aufruf von `next()` diesen Zustand
 ........
 ........
 ```
-
-## Versteckter Tipp!
-
-Um geschachtelte Strukturen wie `state: CellState[][]` zu clonen, könnt ihr
-
-a. Lodashs `__.cloneDeep()` verwenden oder
-  ```typescript
-  const state: CellState[][] = [ [ CellState.LIFE, CellState.DEAD ] ];
-  const copy = __cloneDeep(state);
-  ```
-b. mit JS Boardmitteln per `JSON` Aufruf
-  ```typescript
-  const state: CellState[][] = [ [ CellState.LIFE, CellState.DEAD ] ];
-  const copy = JSON.parse(JSON.stringify(state));
-  ```
