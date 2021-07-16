@@ -1,0 +1,40 @@
+:root {
+    --color-border: rgba(0, 0, 0, 0.6);
+    --color-bg-light: rgba(255, 255, 255, 1);
+    --color-bg-dark: rgba(24, 24, 64, 0.75);
+}
+
+html, body {
+    min-height: 100vh;
+    min-width: 100vw;
+
+    font-size: 18px;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: var(--color-bg-dark);
+}
+
+body {
+    padding: 3% 4%;
+}
+
+#layout {
+    padding: 2rem;
+    background-color: var(--color-bg-light);
+    border: 1px solid var(--color-border);
+}
+
+.gol-game {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: space-around;
+}
+
+.gol-board, .gol-buttons {
+    margin: 1rem;
+}
+
+.gol-buttons {
+    width: fit-content;
+    border: 1px solid silver;
+}
