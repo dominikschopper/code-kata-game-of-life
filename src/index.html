@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,12 +13,31 @@
 
     <script defer src="app/main.ts"></script>
 </head>
+
 <body>
     <div id="layout">
         <h1>Conways Game of Life</h1>
 
-        <div id="mount-game"></div>
-        <button id="next-button">next</button>
+        <div class="gol-game">
+
+            <div id="mount-game" class="gol-board"></div>
+
+            <div class="gol-buttons">
+                <div>
+                    <button id="next-button">next</button>
+                </div>
+                <div class="small-text">
+                    <button id="play-button">play</button>
+                    <label for="ms-interval-field">
+                        <input type="number" min="10" max="1500" id="ms-interval-field" value="333" />
+                        speed in ms
+                    </label>
+                </div>
+            </div>
+
+        </div>
 
     </div>
-</body></html>
+</body>
+
+</html>

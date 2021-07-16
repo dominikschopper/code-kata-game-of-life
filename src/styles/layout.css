@@ -6,7 +6,7 @@
 
 html, body {
     min-height: 100vh;
-    min-width: 100%;
+    min-width: 100vw;
 
     font-size: 18px;
     font-family: 'Courier New', Courier, monospace;
@@ -21,4 +21,20 @@ body {
     padding: 2rem;
     background-color: var(--color-bg-light);
     border: 1px solid var(--color-border);
+}
+
+.gol-game {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: space-around;
+}
+
+.gol-board, .gol-buttons {
+    margin: 1rem;
+}
+
+.gol-buttons {
+    width: fit-content;
+    border: 1px solid silver;
 }
