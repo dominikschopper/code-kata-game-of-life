@@ -14,13 +14,15 @@ export class CellRenderer extends ElementRenderer {
         [CellState.LIFE]: 1
     };
 
-    constructor(private readonly parent: ElementRenderer) {
+    constructor(private readonly parent: ElementRenderer, rowId: number, colId: number) {
         super();
         this.init();
+        this.element.dataset['rowId'] = String(rowId);
+        this.element.dataset['colId'] = String(colId);
     }
 
     private setStateClass(className: string) {
-        this.classNames.map(c => {
+        this.classNames.forEach(c => {
             if (c === className) {
                 this.element.classList.add(c);
             } else {

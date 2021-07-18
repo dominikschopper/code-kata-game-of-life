@@ -1,78 +1,35 @@
 import { BoardRenderer } from "./board-renderer/board-renderer";
-import { GameBoard, GameRules } from './board/game-board';
+import { bootsrapGol } from './bootstrap-gol';
+import { InitialStateTypes, initNextButton, initPlayButton, initResetButtons, initCounter } from './init-click-handlers';
+
+import { getEasyBoardData } from './initial-board-data/easy';
+import { getIntermediateBoardData } from './initial-board-data/intermediate';
+import { getXtremeBoardData } from './initial-board-data/xtreme';
 
 console.log('!!!Start GOL');
 
 const mountPoint = document.getElementById('mount-game');
-
 const renderer = new BoardRenderer(mountPoint);
-const board = new GameBoard(new GameRules());
 
-board.setDataAsString(
-    '....................................\n' +
-    '.....##........................#....\n' +
-    '....................................\n' +
-    '....................................\n' +
-    '....................................\n' +
-    '.........................##.........\n' +
-    '..............##.........##.........\n' +
-    '..............#.#...................\n' +
-    '..............#.....................\n' +
-    '....................................\n' +
-    '....................................\n' +
-    '........................###.........\n' +
-    '....................................\n' +
-    '....................................\n' +
-    '........##..........................\n' +
-    '....................................\n' +
-    '........................##..#.##....\n' +
-    '.......................#..#..##.....\n' +
-    '.........##.............#.#.........\n' +
-    '.........#...............#..........\n' +
-    '...............................#....\n' +
-    '.............................###....\n' +
-    '....#.......................#.......\n' +
-    '....#........................#......\n' +
-    '....#.........................##....'
-);
+initNextButton(renderer);
+initPlayButton(renderer);
 
+const initialStates = {
+    [InitialStateTypes.EASY]: getEasyBoardData(),
+    [InitialStateTypes.MEDIUM]: getIntermediateBoardData(),
+    [InitialStateTypes.XTREME]: getXtremeBoardData()
+};
+initResetButtons(renderer, initialStates);
+
+initCounter();
+
+const board = bootsrapGol();
+
+const boardDataAsString = getEasyBoardData();
+
+
+
+board.setDataAsString(boardDataAsString);
 
 renderer.board = board;
 renderer.render();
-
-const nextButtonElement = document.getElementById('next-button');
-nextButtonElement.addEventListener('click', () => {
-    console.log('clicked next');
-    renderer.next();
-});
-
-const intervalInMsField = document.getElementById('ms-interval-field') as HTMLInputElement;
-
-const playButtonElement = document.getElementById('play-button');
-let clickCount = 0;
-playButtonElement.addEventListener('click', () => {
-    console.log('clicked play');
-    clickCount += 1;
-    decideWhatToPlay(clickCount);
-});
-
-let intervalId;
-const decideWhatToPlay = (clickCount) => {
-    playButtonElement.innerText = getOtherPlayButtonText(clickCount);
-    if (clickCount % 2 === 1) {
-        console.log('start');
-        intervalId = setInterval(() => {
-            renderer.next();
-        }, parseInt(intervalInMsField.value, 10));
-        return;
-    }
-    console.log('stop');
-    clearInterval(intervalId);
-};
-
-
-const getOtherPlayButtonText = (clickCount) => {
-    const playButtonTexts = [ 'play', 'stop' ];
-    return playButtonTexts[clickCount % 2];
-};
-

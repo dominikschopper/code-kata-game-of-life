@@ -31,26 +31,46 @@ export class BoardRenderer {
     next() {
         this.gameBoard.next();
         this.stepCounter += 1;
-        this.boardRenderCompositeRoot.update(this.gameBoard.data);
+        this.update();
         this.render();
     }
 
     init() {
         this.boardRenderCompositeRoot = new TableRenderer();
-        this.board.data.forEach(rowData => {
-            const rowRenderer = new RowRenderer(this.boardRenderCompositeRoot);
+        this.board.data.forEach((rowData, rowId) => {
+            const rowRenderer = new RowRenderer(this.boardRenderCompositeRoot, rowId);
             this.boardRenderCompositeRoot.addChild(rowRenderer);
 
-            rowData.forEach(cellState => {
-                const cellRenderer = new CellRenderer(rowRenderer);
+            rowData.forEach((cellState, colId) => {
+                const cellRenderer = new CellRenderer(rowRenderer, rowId, colId);
                 rowRenderer.addChild(cellRenderer);
             });
         });
+
         this.mountPoint.appendChild(this.boardRenderCompositeRoot.element);
+        this.addToggleClick();
     }
 
     render() {
         this.boardRenderCompositeRoot.render();
     }
+
+    update() {
+        this.boardRenderCompositeRoot.update(this.board.data);
+    }
+
+    private addToggleClick() {
+        this.boardRenderCompositeRoot.element.addEventListener('click', (ev) => {
+            const clickedTile = ev.target as HTMLElement;
+            const rowId = clickedTile.dataset['rowId'];
+            const colId = clickedTile.dataset['colId'];
+            console.log('who was clicked:%o / ', clickedTile);
+            this.board.toggleCell(parseInt(rowId, 10), parseInt(colId, 10));
+            this.update();
+            this.render();
+        });
+    }
+
+
 }
 
