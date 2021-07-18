@@ -68,6 +68,45 @@ describe('the Board interface', () => {
         });
     });
 
+    describe('the toggleCell() method', () => {
+        it('should set a LIFE cell to be DEAD and not touch the other cells', () => {
+            board.data = [
+                //  col 0           col 1           col 2
+                [CellState.DEAD, CellState.DEAD, CellState.DEAD],   // row: 0
+                [CellState.DEAD, CellState.DEAD, CellState.DEAD],   // row: 1
+                [CellState.DEAD, CellState.DEAD, CellState.DEAD]    // row: 2
+            ];
+
+            board.toggleCell(1, 1);
+
+            expect(board.data[1][1]).toBe(CellState.LIFE);
+            getAllStatesButThis(1, 1, board.data).forEach(state => {
+                expect(state).toBe(CellState.DEAD)
+            })
+
+        });
+
+        it('should set a DEAD cell to be LIFE and not touch the other cells', () => {
+            board.data = [
+                //  col 0           col 1           col 2
+                [CellState.LIFE, CellState.LIFE, CellState.LIFE],   // row: 0
+                [CellState.LIFE, CellState.LIFE, CellState.LIFE],   // row: 1
+                [CellState.LIFE, CellState.LIFE, CellState.LIFE]    // row: 2
+            ];
+
+            board.toggleCell(1, 1);
+
+            expect(board.data[1][1]).toBe(CellState.DEAD);
+            getAllStatesButThis(1, 1, board.data).forEach(state => {
+                expect(state).toBe(CellState.LIFE)
+            })
+        });
+
+        const getAllStatesButThis = (row: number, col: number, data: CellState[][]): CellState[] => {
+            return data.map((singleRow, r) => singleRow.filter((cell, c) => r!==row && c!==col)).flat();
+        };
+    });
+
     describe('the next() method', () => {
 
         /**
