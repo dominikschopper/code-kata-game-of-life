@@ -2,10 +2,12 @@
 <html lang="en">
 
 <head>
+    <link rel="shortcut icon" href="favicon.png" type="image/png">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conways Game of Life</title>
+
+    <title>Game of Life // Code Kata</title>
 
     <link rel="stylesheet" href="./styles/reset.css">
     <link rel="stylesheet" href="./styles/layout.css">
@@ -22,17 +24,72 @@
 
             <div id="mount-game" class="gol-board"></div>
 
+
             <div class="gol-buttons">
-                <div>
-                    <button id="next-button">next</button>
+                <div class="counter">
+                    <fieldset>
+                        <legend>Step Counter</legend>
+
+                        <input type="text"
+                            name="step-counter"
+                            id="step-counter"
+                            class="display-counter"
+                            maxlength="5"
+                            disabled="disabled">
+                    </fieldset>
                 </div>
-                <div class="small-text">
-                    <button id="play-button">play</button>
-                    <label for="ms-interval-field">
-                        <input type="number" min="10" max="1500" id="ms-interval-field" value="333" />
+                <fieldset>
+                    <legend>next step</legend>
+
+                    <button id="next-button" class="gol-button">next</button>
+                </fieldset>
+
+                <fieldset class="small-text">
+                    <legend>watch the game</legend>
+
+                    <button id="play-button" class="gol-button">play</button>
+
+                    <label for="ms-interval-field" class="gol-play-interval">
+                        <input type="number" min="10" max="1500" id="ms-interval-field" value="333" /><br/>
                         speed in ms
                     </label>
-                </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>reset</legend>
+
+                    <input type="radio"
+                        checked="checked"
+                        name="board-data-select"
+                        value="easy"
+                        id="board-data-easy" />
+                    <label for="board-data-easy"
+                        data-state-type="easy"
+                        class="gol-button board-data-select-button">
+                        Easy
+                    </label>
+
+                    <input type="radio"
+                        name="board-data-select"
+                        value="medium"
+                        id="board-data-medium" />
+                    <label for="board-data-medium"
+                        data-state-type="medium"
+                        class="gol-button board-data-select-button">
+                        Medium
+                    </label>
+
+                    <input type="radio"
+                        name="board-data-select"
+                        value="xtreme"
+                        id="board-data-xtreme" />
+                    <label for="board-data-xtreme"
+                        data-state-type="xtreme"
+                        class="gol-button board-data-select-button">
+                        Xtreme
+                    </label>
+
+                </fieldset>
             </div>
 
         </div>

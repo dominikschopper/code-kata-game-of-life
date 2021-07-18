@@ -2,9 +2,11 @@
     --color-border: rgba(0, 0, 0, 0.6);
     --color-bg-light: rgba(255, 255, 255, 1);
     --color-bg-dark: rgba(24, 24, 64, 0.75);
+    --color-live: rgba(30, 92, 30, 0.9);
 }
 
-html, body {
+html,
+body {
     min-height: 100vh;
     min-width: 100vw;
 
@@ -30,11 +32,69 @@ body {
     align-content: space-around;
 }
 
-.gol-board, .gol-buttons {
+.gol-board,
+.gol-buttons {
     margin: 1rem;
 }
 
-.gol-buttons {
-    width: fit-content;
-    border: 1px solid silver;
+.gol-button {
+    display: block;
+    min-width: 5.5rem;
+    height: 2.25rem;
+    line-height: 1.125rem;
+    padding: 0.6rem 1rem;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    text-align: center;
+    background-color: rgba(200, 200, 200, 0.4);
+    border: 1px solid var(--color-bg-dark);
+}
+
+.gol-button:hover {
+    box-shadow: .25rem .25rem .125rem rgba(0, 0, 0, 0.6);
+}
+
+.gol-button:active {
+    box-shadow: 0 0 0 transparent;
+}
+
+
+
+.gol-buttons fieldset {
+    display: flex;
+    gap: 1rem;
+}
+
+.board-data-select-button {
+    font-size: 1rem;
+    background-color: rgba(200, 200, 200, 0.4);
+
+}
+
+input[type=radio] {
+    display: none;
+}
+
+input[type="radio"]:checked+label {
+    background-color: var(--color-live);
+    color: var(--color-bg-light);
+}
+
+.gol-play-interval {
+    display: block;
+    font-size: 0.75rem;
+}
+
+.display-counter {
+    display: inline;
+    height: fit-content;
+    padding: 0.25rem 0.5rem;
+
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid var(--color-bg-dark);
+    text-align: center;
+    font-size: 1rem;
+    line-height: 1.25rem;
 }
