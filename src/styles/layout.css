@@ -1,8 +1,9 @@
 :root {
     --color-border: rgba(0, 0, 0, 0.6);
     --color-bg-light: rgba(255, 255, 255, 1);
-    --color-bg-dark: rgba(24, 24, 64, 0.75);
-    --color-live: rgba(30, 92, 30, 0.9);
+    --color-bg-dark: rgba(24, 24, 64, .75);
+    --color-live: rgba(30, 92, 30, .9);
+    --color-dead: rgba(255, 255, 255, .5);
 }
 
 html,
@@ -10,7 +11,7 @@ body {
     min-height: 100vh;
     min-width: 100vw;
 
-    font-size: 18px;
+    font-size: 16px;
     font-family: 'Courier New', Courier, monospace;
     background-color: var(--color-bg-dark);
 }
@@ -84,6 +85,10 @@ input[type="radio"]:checked+label {
 .gol-play-interval {
     display: block;
     font-size: 0.75rem;
+}
+
+.gol-play-interval-field {
+    text-align: right;
 }
 
 .display-counter {

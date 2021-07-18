@@ -21,9 +21,9 @@ const stopPlaying = () => {
 
 const playButtonElement = document.getElementById('play-button');
 
-const getOtherPlayButtonText = (clickCount) => {
+const getOtherPlayButtonText = (count) => {
     const playButtonTexts = ['play', 'stop'];
-    return playButtonTexts[clickCount % 2];
+    return playButtonTexts[count % 2];
 };
 
 const resetPlayButtonText = () => {
@@ -43,18 +43,19 @@ export const initPlayButton = (renderer: BoardRenderer): void => {
     });
 
 
-    const decideWhatToPlay = (clickCount) => {
-        if (clickCount % 2 === 1) {
+    const decideWhatToPlay = (count) => {
+        if (count % 2 === 1) {
             console.log('start playing');
+            const ms = Math.floor(1000 / parseInt(intervalInMsField.value))
             intervalId = setInterval(() => {
                 stepCounter.add()
                 renderer.next();
-            }, parseInt(intervalInMsField.value, 10));
+            }, ms);
         } else {
             console.log('stop playing');
             stopPlaying();
         }
-        playButtonElement.innerText = getOtherPlayButtonText(clickCount);
+        playButtonElement.innerText = getOtherPlayButtonText(count);
     };
 
 };
