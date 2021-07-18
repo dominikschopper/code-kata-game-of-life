@@ -1,10 +1,10 @@
 import { BoardRenderer } from "./board-renderer/board-renderer";
 import { bootsrapGol } from './bootstrap-gol';
-import { InitialStateTypes, initNextButton, initPlayButton, initResetButtons, initCounter } from './init-click-handlers';
+import { InitialStateTypes, initNextButton, initPlayButton, initResetButtons, initCounter } from './init-render-helpers/init-click-handlers';
 
-import { getEasyBoardData } from './initial-board-data/easy';
-import { getIntermediateBoardData } from './initial-board-data/intermediate';
-import { getXtremeBoardData } from './initial-board-data/xtreme';
+import { getEasyBoardData } from './init-render-helpers/initial-board-data/easy';
+import { getIntermediateBoardData } from './init-render-helpers/initial-board-data/intermediate';
+import { getXtremeBoardData } from './init-render-helpers/initial-board-data/xtreme';
 
 console.log('!!!Start GOL');
 

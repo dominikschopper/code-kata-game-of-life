@@ -1,6 +1,6 @@
-import { BoardRenderer } from './board-renderer/board-renderer';
+import { BoardRenderer } from '../board-renderer/board-renderer';
 import { stepCounter } from './step-counter';
-import { bootsrapGol } from './bootstrap-gol';
+import { bootsrapGol } from '../bootstrap-gol';
 
 export const initNextButton = (renderer: BoardRenderer): void => {
 

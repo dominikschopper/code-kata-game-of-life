@@ -1,12 +1,11 @@
 import { Board, CellState } from './board';
-import { GameBoard, GameRules } from './game-board';
+import { GameBoard } from './game-board';
 
 describe('the Board interface', () => {
     let board: Board;
-    const rules = new GameRules();
 
     beforeEach(() => {
-        board = new GameBoard(rules);
+        board = new GameBoard();
     });
 
     describe('the setDataAsString() method', () => {
