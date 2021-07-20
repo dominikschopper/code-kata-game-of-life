@@ -74,6 +74,16 @@ b. you can use JS default tools like JSON
 
 this should come in handy when you want to create a deep copy of a structure.
 
+## Running the Tests
+
+After cloning you should run `npm ci`.
+
+After that you can run `npm run test` or `npm run test:watch` and you should see tests for the implementation of the Board within the GameBoard class
+
+## Running your  code in the frontend
+
+When you have implemented it correctly, you can run it via `npm run serve:dev`. To get your Board Implementation bootstrapped to the html you should instantiate your board in the `bootstrap-gol.ts` file.
+
 ### Examples for interesting patterns
 
 -----
