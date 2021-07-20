@@ -1,104 +1,110 @@
 # Code Kata - Conways Game of Life
 
-diese Kata soll die Funktionalität von [Conways "Game of Life"](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life), einem zellulären Automaten abbilden.
+In this Kata you can implement the logic for [Conways "Game of Life"](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life). Game of Life is a cellular automaton.
 
-Da die Funktionalität doch einges erfordert, sollte die Kata mit genügend Zeit ausgeführt werden. Ich schlage ca. 30min für einen Durchgang vor, d.h. die Kata wird bei zwei Wiederholungen samt Einführung mind. 80min dauern.
+Since the functionality is easy to mess up, you should try to plan with  enough time for each round (I would propse 40min minimum) and two rounds at least.
 
-## Aufgabe
+## Exercise
 
-Es ist Eure Aufgabe, Conways "Game of Life" auszuprogrammieren.
+You should program Conways Game of Life.
 
-D.h. eine Karte `Board` zu erstellen, das aus einzelnen Zellen besteht. Jede Zelle kann einen von zwei Zuständen einnehmen: `alive` oder `dead`.
+This means that you have to create a map or board that consists of cells.
+
+Each cell must have one of two states `alive` or `dead`.
+
+This is an example, with all live cells marked black and all dead cells white.
 
 Ein Beispiel Board könnte zB so aussehen (schwarz = `alive` white = `dead`)
 
 ![game board Conways Game of Life](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Game_of_life_glider_gun.svg/610px-Game_of_life_glider_gun.svg.png)
 
-Das Spiel wird in Runden berechnet. D.h. aus dem initialen Zustand (Runde 0) wird der Zustand für die nächste Runde errechnet und immer so weiter.
+Then the game is calculated in rounds. In each round the next state of the cells is calculated through the following rules.
 
-### Regeln des "Game of Life"
+### Rules of "Game of Life"
 
-Jede Zelle hat 8 Nachbarzellen! D.h. alle direkt angrenzenden Zellen waagrecht, senkrecht oder diagonal gelten als Nachbarn.
+Each cell has 8 neighbour cells (vertical, horizontal and diagonal attached cells count as neighbours).
 
-- Jede lebende Zelle mit weniger als 2 lebenden Nachbarn wird in der nächsten Runde tot sein. (Unterbevölkerung)
+- Every living cell with less then 2 neighbours will be dead in the next round. (Underpopulation)
 
-- Jede lebende Zelle mit mehr als 3 lebenden Nachbarn wird in der nächsten Runde tot sein. (Überbevölkerung)
+- Every living cell with more than 3 neighbours will be dead in the next round. (Overpopulation)
 
-- Jede lebende Zelle mit 2 oder 3 Nachbarn wird überleben.
+- Every living cell with exactly 2 or 3 living neighbours will survive the round and stay alive.
 
-- Jede tote Zelle mit genau 3 lebenden Nachbarn wird lebendig. (Reproduktion).
+- Every dead cell with exactly 3 living neighbours will come alive in the next round. (Reproduction).
 
-D.h. die vier Regeln lassen sich auf folgende drei verkürzen:
+This means the four rules can be reduced to these three:
 
-1. Jede lebende Zelle mit 2 oder 3 lebenden Nachbarzellen überlebt eine Runde.
+1. Every living cell with 2 living neighbours will stay alive.
 
-1. Jede tote Zelle mit genau 3 lebenden Nachbarn wird lebendig.
+1. Every cell (dead or alive) with 3 living neighbours will be alive in the next round.
 
-1. Alle anderen Zellen sind in der nächsten Runde tot.
+1. All other cells will be dead in the next round.
 
 ### Board
 
-Erstellt ein Board, das ein Property `data` das den aktuellen State des Boards enthält.
+Create a `GameBoard` class that implements the `Board` interface.
 
-Der State ist als einfacher Array von Arrays abgebildet `CellState[][]`
+Its state (in the `data` property) is a simple Array of Arrays like this `CellState[][]`.
 
-Es gibt bereits einen `enum CellState {}`.
+The necessary `enum CellState {}` already exists.
 
-Das Board soll eine Methode `next()` haben, die die nächste Runde errechnet und diese über `data` und andere Methoden zugänglich macht.
+The board provides a `next()` method that calculates the state of the board for the next round and provides that state via the `data` property.
 
-Außerdem muss das Board eine Methode `toString()` haben, die den state als ein String zurückgeben. Jede Zelle ist ein Zeichen (`.` für tote Zellen, '#' für lebende Zellen, zwischen zwei Zeilen steht ein `\n`)
+The board provides a `toString()` method, that returns '.' for a dead cell and '#' for a live one. Rows of cells will be split by `\n`.
 
-Das Board soll die Daten, die durch die `toString()` Methode geliefert werden auch mit einer `setDataAsString(strg)` Methode konsumieren können.
+The board should be able to consume data that is returned by the `toString()` method and set its state accordingly via the `setDataAsString(data: string)` method.
 
-#### Tipp!
+#### Tip!
 
-Um geschachtelte Strukturen wie `state: CellState[][]` zu clonen, könnt ihr
+You will need to copy the whole board to evade side effects when calculating the next state. A deep copy can be done in a lot of ways,
+e.g. you can use a library like lodash with its `deepClone` function.
 
 a. Lodashs `__.cloneDeep()` verwenden (erst lodash als dependency installieren)
   ```typescript
   const state: CellState[][] = [ [ CellState.LIFE, CellState.DEAD ] ];
-  const copy = __cloneDeep(state);
+  const copy = _.cloneDeep(state);
   ```
-   oder
-b. mit JS STandard-Boardmitteln per `JSON` Aufruf ein Object deep-clonen
+  or
+
+b. you can use JS default tools like JSON
   ```typescript
   const state: CellState[][] = [ [ CellState.LIFE, CellState.DEAD ] ];
-  const copy = JSON.parse(JSON.stringify(state));
+  const copy = JSON.parse( JSON.stringify(state) );
   ```
 
-das kann hier hilfreich sein, um zB eine Copy des Boards zu erstellen, um keine Seiteneffekte zu erzeugen
+this should come in handy when you want to create a deep copy of a structure.
 
-### Beispiele für Muster
-
------
-#### Bsp 1 - static
-
-oder dieser Input
-```
-....
-.##.
-.##.
-....
-```
-hätte nach dem Aufruf von `next()` diesen Output
-```
-....
-.##.
-.##.
-....
-```
+### Examples for interesting patterns
 
 -----
-#### Bsp 2 - create, static
+#### Example 1 - static
 
-oder dieser Input
+this input
+```
+....
+.##.
+.##.
+....
+```
+should be this output after a `next()` call
+```
+....
+.##.
+.##.
+....
+```
+
+-----
+#### Example 2 - create, static
+
+this input
 ```
 ....
 .##.
 .#..
 ....
 ```
-hätte nach dem Aufruf von `next()` diesen Output
+should be this output after a `next()` call
 ```
 ....
 .##.
@@ -107,30 +113,30 @@ hätte nach dem Aufruf von `next()` diesen Output
 ```
 
 -----
-#### Bsp 3 - spinner
+#### Example 3 - spinner
 
-oder dieser Input
+this input
 ```
 .....
 .###.
 .....
 ```
-hätte nach dem Aufruf von `next()` diesen Output
+should be this output after a `next()` call
 ```
 ..#..
 ..#..
 ..#..
 ```
-hätte nach dem Aufruf von `next()` diesen Output
+should be this output after a `next()` call
 ```
 .....
 .###.
 .....
 ```
 -----
-#### Bsp 4 - Glider
+#### Example 4 - Simple Glider
 
-Der String Input (für einen einfachen sogenannten Glider) sieht zB so aus:
+the so called glider moves. So this input
 
 ```
 ........
@@ -140,7 +146,7 @@ Der String Input (für einen einfachen sogenannten Glider) sieht zB so aus:
 ....#...
 ........
 ```
-und hätte nach dem Aufruf von `next()` diesen Zustand
+should be this output after a `next()` call
 
 ```
 ........
